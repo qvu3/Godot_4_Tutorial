@@ -9,7 +9,8 @@ func handleInput():
 
 func updateAnimation():
 	if velocity.length() == 0:
-		animations.stop()
+		if animations.is_playing():
+			animations.stop()
 	else:
 		var direction = "up"
 		if velocity.x < 0: direction = "left"
@@ -18,7 +19,7 @@ func updateAnimation():
 		
 		animations.play("Walk_" + direction)
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	handleInput()
 	move_and_slide()
 	updateAnimation()
